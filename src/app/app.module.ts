@@ -7,7 +7,7 @@ import { DynamicFormComponent } from './dynamicForm/dynamicForm.component';
 import { DynamicComponent } from './shared/dynamic';
 import { topnavComponent } from './shared/topnav/topnav.component';
 import { LoaderComponent } from './shared/loader/loader.component';
-import { HomeService } from './service/home.service';
+import { DynamicFormService } from './service/dynamicForm.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 @NgModule({
@@ -32,7 +32,7 @@ import {HttpClientModule} from '@angular/common/http';
 
      ])
   ],
-  providers: [HomeService],
+  providers: [DynamicFormService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

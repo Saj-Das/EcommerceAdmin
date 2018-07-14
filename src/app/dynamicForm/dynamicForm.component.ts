@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HomeService } from '../service/home.service';
+import { DynamicFormService } from '../service/dynamicForm.service';
 import { HttpResponse } from '@angular/common/http';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { getOrCreateTemplateRef } from '../../../node_modules/@angular/core/src/render3/di';
@@ -17,7 +17,7 @@ export class DynamicFormComponent implements OnInit {
   currentFileUpload: File;
   form: FormGroup;
   formType: any;
-  constructor(public homeService: HomeService, private fb: FormBuilder, private router: Router) {
+  constructor(public dynamicFormService: DynamicFormService, private fb: FormBuilder, private router: Router) {
     this.formType = this.getType(this.router.url.toString())
     this.formControl = this.getTemplate();
     this.form = this.toFormGroup();
@@ -74,13 +74,15 @@ export class DynamicFormComponent implements OnInit {
   onSubmit(form) {
     console.log(form);
     if(this.formType=="product")
-    this.homeService.addProduct(form.value);
+    this.dynamicFormService.addProduct(form.value);
+    else if(this.formType=="user")
+    this.dynamicFormService.addUser(form.value);
   }
   upload() {
     this.currentFileUpload = this.selectedFiles.item(0);
-    console.log(this.homeService)
+    console.log(this.dynamicFormService)
 
-    this.homeService.uploadFile(this.currentFileUpload).subscribe(event => {
+    this.dynamicFormService.uploadFile(this.currentFileUpload).subscribe(event => {
 
       if (event instanceof HttpResponse) {
 
@@ -93,7 +95,5 @@ export class DynamicFormComponent implements OnInit {
     this.selectedFiles = undefined;
 
   }
-  getData() {
-    this.homeService.getData().subscribe(x => console.log(x));
-  }
+ 
 }

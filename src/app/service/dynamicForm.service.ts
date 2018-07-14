@@ -3,7 +3,7 @@ import {Observable} from 'rxjs/Observable';
 import {HttpClient, HttpRequest, HttpEvent} from '@angular/common/http';
 import {Http, Response} from '@angular/http';
 @Injectable()
-export class HomeService {
+export class DynamicFormService {
 
   constructor(private http: HttpClient) { }
   
@@ -19,7 +19,15 @@ export class HomeService {
   }
   addProduct(data)
   {
-    this.http.post("https://localhost:5001/api/product",data).subscribe(data => 
+    this.http.post("https://localhost:5001/api/Form/ProductAdd",data).subscribe(data => 
+    {console.log(data);},
+     error => 
+     {alert("Error");}
+    );;
+  }
+  addUser(data)
+  {
+    this.http.post("https://localhost:5001/api/Form/UserAdd",data).subscribe(data => 
     {console.log(data);},
      error => 
      {alert("Error");}
