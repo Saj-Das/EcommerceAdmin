@@ -1,3 +1,35 @@
-<p>
-  home works!
-</p>
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <form>
+      <div class="form-group" *ngFor="let ctl of formControl">
+        <div class="form-row">
+          <div class="col-md-6" *ngFor="let ctl1 of ctl.fctrl">
+            <label for={{ctl1.name}}>{{ctl1.name}}</label>
+            <input class="form-control" id={{ctl1.name}} *ngIf="ctl1.type=='input'" type="text" aria-describedby="nameHelp">
+            <select class="form-control" *ngIf="ctl1.type=='dropdown'">
+              <option>
+              </option>
+            </select>
+            <textarea *ngIf="ctl1.type=='textarea'" class="form-control">
+                  </textarea>
+          </div>
+        </div>
+      </div>
+      <button (click)="submit()" class="btn btn-primary">Submit</button>
+    </form>
+    <!-- <div style="text-align:center">
+
+    <label>
+  
+      <input type="file" (change)="selectFile($event)">
+  
+      </label>  
+  
+      <button [disabled]="!selectedFiles"
+  
+  (click)="upload()">Upload</button>
+  <button (click)="getData()">getdata</button>
+  
+    </div> -->
+  </div>
+</div>

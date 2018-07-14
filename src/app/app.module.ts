@@ -7,7 +7,9 @@ import { HomeComponent } from './home/home.component';
 import { DynamicComponent } from './shared/dynamic';
 import { topnavComponent } from './shared/topnav/topnav.component';
 import { LoaderComponent } from './shared/loader/loader.component';
+import { HomeService } from './service/home.service';
 
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -16,14 +18,16 @@ import { LoaderComponent } from './shared/loader/loader.component';
     DynamicComponent,
     topnavComponent,
     LoaderComponent
+    
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
      ])
   ],
-  providers: [],
+  providers: [HomeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
