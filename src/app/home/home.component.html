@@ -1,21 +1,26 @@
 <div class="content-wrapper">
   <div class="container-fluid">
-    <form>
+    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)" >
       <div class="form-group" *ngFor="let ctl of formControl">
         <div class="form-row">
           <div class="col-md-6" *ngFor="let ctl1 of ctl.fctrl">
             <label for={{ctl1.name}}>{{ctl1.name}}</label>
-            <input class="form-control" id={{ctl1.name}} *ngIf="ctl1.type=='input'" type="text" aria-describedby="nameHelp">
-            <select class="form-control" *ngIf="ctl1.type=='dropdown'">
-              <option>
+            <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='input'" type="text" aria-describedby="nameHelp">
+            <select class="form-control" [formControlName]="ctl1.name" *ngIf="ctl1.type=='dropdown'">
+              <option value=1>
+                dfdsf
               </option>
+              <option value=2>
+                  dfdsfasdd
+                </option>
             </select>
-            <textarea *ngIf="ctl1.type=='textarea'" class="form-control">
+            <textarea *ngIf="ctl1.type=='textarea'" [formControlName]="ctl1.name" class="form-control">
                   </textarea>
           </div>
         </div>
       </div>
-      <button (click)="submit()" class="btn btn-primary">Submit</button>
+      <button  type=submit [disabled]="!form.valid"  class="btn btn-primary">Submit</button>
+     
     </form>
     <!-- <div style="text-align:center">
 
