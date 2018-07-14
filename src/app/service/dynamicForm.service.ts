@@ -10,11 +10,11 @@ export class DynamicFormService {
   uploadFile(file: File): Observable<HttpEvent<{}>> {
     const formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', 'https://localhost:5001/api/home', formdata, {
+    const req = new HttpRequest('POST', 'https://localhost:5001/api/Form/PostFile', formdata, {
       reportProgress: true,
       responseType: 'text'
     }
-    );
+    )
     return this.http.request(req);
   }
   addProduct(data)
@@ -23,7 +23,7 @@ export class DynamicFormService {
     {console.log(data);},
      error => 
      {alert("Error");}
-    );;
+    );
   }
   addUser(data)
   {

@@ -9,6 +9,7 @@
             <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='pass'" type="password" aria-describedby="nameHelp">
             <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='number'" type="number" aria-describedby="nameHelp">
             <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='email'" type="email" aria-describedby="nameHelp">
+            <input type="file" (change)="selectFile($event)" *ngIf="ctl1.type=='file'">
             <select class="form-control" [formControlName]="ctl1.name" *ngIf="ctl1.type=='dropdown'">
               <option value=1>
                 dfdsf
@@ -22,9 +23,7 @@
           </div>
         </div>
       </div>
-      <button  type=submit 
-     
-        class="btn btn-primary">Submit</button>
+      <button  type=submit class="btn btn-primary">Submit</button>
         <!-- [disabled]="!form.valid" -->
     </form>
     <!-- <div style="text-align:center">
