@@ -1,33 +1,66 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from '../service/home.service';
 import { HttpResponse } from '@angular/common/http';
-import { FormControl, FormGroup, FormBuilder ,Validators} from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { getOrCreateTemplateRef } from '../../../node_modules/@angular/core/src/render3/di';
+import { Router } from '../../../node_modules/@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
- 
+
 })
 export class HomeComponent implements OnInit {
   heroForm: FormGroup;
   selectedFiles: FileList;
-  formControl = [
-    { fctrl: [{ "name": "Product Name", "type": "input" }, { "name": "Selling Price", "type": "input" }] },
-    { fctrl: [{ "name": "Cost Price", "type": "input" }, { "name": "Brand", "type": "input" }] },
-    { fctrl: [{ "name": "Quantity", "type": "input" }, { "name": "Category", "type": "dropdown" }] },
-    { fctrl: [{ "name": "Tags", "type": "dropdown" }, { "name": "Detail", "type": "textarea" }] }
-
-  ]
+  formControl: any;
   currentFileUpload: File;
   form: FormGroup;
-  constructor(public homeService: HomeService, private fb: FormBuilder) {
-    this.form=this.toFormGroup();
+  formType: any;
+  constructor(public homeService: HomeService, private fb: FormBuilder, private router: Router) {
+    this.formType = this.getType(this.router.url.toString())
+    this.formControl = this.getTemplate();
+    this.form = this.toFormGroup();
+  }
+  getType(type) {
+
+    if (type.indexOf("product") == 1) {
+      return "product"
+    }
+    else if (type.indexOf("user") == 1) {
+      return "user"
+    }
+  }
+  getTemplate() {
+    switch (this.formType) {
+      case "product":
+        return [
+          { fctrl: [{ "Dname": "Product Name","name": "ProductName", "type": "input" }, 
+                    { "Dname": "Selling Price","name": "SellingPrice", "type": "number" }] },
+          { fctrl: [{ "Dname": "Cost Price","name": "CostPrice", "type": "number" }, 
+                    { "Dname": "Brand","name": "Brand", "type": "input" }] },
+          { fctrl: [{ "Dname": "Quantity","name": "Quantity", "type": "number" }, 
+                    { "Dname": "Category","name": "Category", "type": "dropdown" }] },
+          { fctrl: [{ "Dname": "Tags","name": "Tags", "type": "dropdown" }, 
+                    { "Dname": "Detail","name": "Detail", "type": "textarea" }] }
+
+        ];
+      case "user":
+        return [
+          { fctrl: [{ "Dname": "Name","name": "Name", "type": "input" }, 
+                    { "Dname": "Password","name": "Password", "type": "pass" }] },
+          { fctrl: [{ "Dname": "Country","name": "Country", "type": "dropdown" }, 
+                    { "Dname": "Contact","name": "Contact", "type": "number" }] },
+          { fctrl: [{ "Dname": "Email","name": "Email", "type": "email" }] }
+
+        ];
+    }
   }
   toFormGroup() {
     let group: any = {};
     this.formControl.forEach(x => {
       x.fctrl.forEach(y => {
-        group[y.name] = new FormControl('',Validators.required);
+        group[y.name] = new FormControl('', Validators.required);
       });
     });
     return new FormGroup(group);
@@ -36,16 +69,14 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
   selectFile(event) {
-
     this.selectedFiles = event.target.files;
-
   }
-  onSubmit(form)
-  {
-    console.log(form.value)
+  onSubmit(form) {
+    console.log(form);
+    if(this.formType=="product")
+    this.homeService.addProduct(form.value);
   }
   upload() {
-
     this.currentFileUpload = this.selectedFiles.item(0);
     console.log(this.homeService)
 

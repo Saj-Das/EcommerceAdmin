@@ -4,8 +4,11 @@
       <div class="form-group" *ngFor="let ctl of formControl">
         <div class="form-row">
           <div class="col-md-6" *ngFor="let ctl1 of ctl.fctrl">
-            <label for={{ctl1.name}}>{{ctl1.name}}</label>
+            <label for={{ctl1.name}}>{{ctl1.Dname}}</label>
             <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='input'" type="text" aria-describedby="nameHelp">
+            <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='pass'" type="password" aria-describedby="nameHelp">
+            <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='number'" type="number" aria-describedby="nameHelp">
+            <input class="form-control" [formControlName]="ctl1.name" id={{ctl1.name}} *ngIf="ctl1.type=='email'" type="email" aria-describedby="nameHelp">
             <select class="form-control" [formControlName]="ctl1.name" *ngIf="ctl1.type=='dropdown'">
               <option value=1>
                 dfdsf
@@ -19,8 +22,10 @@
           </div>
         </div>
       </div>
-      <button  type=submit [disabled]="!form.valid"  class="btn btn-primary">Submit</button>
+      <button  type=submit 
      
+        class="btn btn-primary">Submit</button>
+        <!-- [disabled]="!form.valid" -->
     </form>
     <!-- <div style="text-align:center">
 

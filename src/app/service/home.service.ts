@@ -17,6 +17,14 @@ export class HomeService {
     );
     return this.http.request(req);
   }
+  addProduct(data)
+  {
+    this.http.post("https://localhost:5001/api/product",data).subscribe(data => 
+    {console.log(data);},
+     error => 
+     {alert("Error");}
+    );;
+  }
 getData()
 {
   return this.http.get('https://localhost:5001/api/home');

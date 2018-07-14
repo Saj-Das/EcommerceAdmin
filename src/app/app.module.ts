@@ -27,6 +27,9 @@ import {HttpClientModule} from '@angular/common/http';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'product/add', component: HomeComponent },
+      { path: 'user/add', component: HomeComponent },
+
      ])
   ],
   providers: [HomeService],
