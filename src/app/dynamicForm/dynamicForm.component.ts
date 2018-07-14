@@ -6,11 +6,11 @@ import { getOrCreateTemplateRef } from '../../../node_modules/@angular/core/src/
 import { Router } from '../../../node_modules/@angular/router';
 @Component({
   selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  templateUrl: './dynamicForm.component.html',
+  styleUrls: ['./dynamicForm.component.css'],
 
 })
-export class HomeComponent implements OnInit {
+export class DynamicFormComponent implements OnInit {
   heroForm: FormGroup;
   selectedFiles: FileList;
   formControl: any;
