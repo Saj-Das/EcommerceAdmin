@@ -6,11 +6,12 @@ import {Http, Response} from '@angular/http';
 export class DynamicFormService {
 
   constructor(private http: HttpClient) { }
-  
+   url='https://localhost:5001/api/';
+
   uploadFile(file: File): Observable<HttpEvent<{}>> {
     const formdata: FormData = new FormData();
     formdata.append('file', file);
-    const req = new HttpRequest('POST', 'https://localhost:5001/api/Form/PostFile', formdata, {
+    const req = new HttpRequest('POST', this.url+'Form/PostFile', formdata, {
       reportProgress: true,
       responseType: 'text'
     }
@@ -19,7 +20,7 @@ export class DynamicFormService {
   }
   addProduct(data)
   {
-    this.http.post("https://localhost:5001/api/Form/ProductAdd",data).subscribe(data => 
+    this.http.post(this.url+"Form/ProductAdd",data).subscribe(data => 
     {console.log(data);},
      error => 
      {alert("Error");}
@@ -27,7 +28,7 @@ export class DynamicFormService {
   }
   addUser(data,me)
   {
-    this.http.post("https://localhost:5001/api/Form/UserAdd",data).subscribe(data => 
+    this.http.post(this.url+"Form/UserAdd",data).subscribe(data => 
     {
       me.IsLoaderVisible=false;
     },
@@ -35,10 +36,7 @@ export class DynamicFormService {
      {
      me.IsLoaderVisible=false;
     }
-    );;
+    );
   }
-getData()
-{
-  return this.http.get('https://localhost:5001/api/home');
-}
+
 }

@@ -95,6 +95,7 @@ export class DynamicFormComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
   onSubmit(form) {
+     
     this.IsLoaderVisible = true;
     if (this.formType == "product") {
       this.currentFileUpload = this.selectedFiles.item(0);
