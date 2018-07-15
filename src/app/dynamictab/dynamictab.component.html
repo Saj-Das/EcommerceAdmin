@@ -1,24 +1,20 @@
 <div class="container-wrapper">
-    <tabset>
-      <tab heading="Product" id="tab1">
-        <div class="tabset-wrapper">
-       <app-dfrm ftype="product"></app-dfrm>
-      </div>
-      </tab>
-      <tab heading="User">
-        <div  class="tabset-wrapper">    
-        <app-dfrm ftype="user"></app-dfrm>
-      </div>
-      </tab>
-      <tab heading="Basic Title 2">
-          <div  class="tabset-wrapper">
-        <app-dynamic-list ltype="product"></app-dynamic-list>
+  <tabset>
+    <tab heading="Product" id="tab1">
+      <div class="tabset-wrapper">
+
+        <div class="tabset-margin">
+          <app-dynamic-for-tab [componentData]="componentDataProduct" (switch)="switchCompData($event)"></app-dynamic-for-tab>
         </div>
-      </tab>
-      <tab heading="Basic Title 2">
-          <div  class="tabset-wrapper">
-          <app-dynamic-list ltype="user"></app-dynamic-list>
+      </div>
+    </tab>
+    <tab heading="User">
+      <div class="tabset-wrapper">
+       <div class="tabset-margin">
+          <app-dynamic-for-tab [componentData]="componentDataUser" (switch)="switchCompData($event)"></app-dynamic-for-tab>
         </div>
-        </tab>
-    </tabset>
-  </div>
+      </div>
+    </tab>
+
+  </tabset>
+</div>

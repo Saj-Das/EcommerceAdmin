@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DynamicListService } from '../service/dynamic-list.service';
 
 @Component({
@@ -7,8 +7,8 @@ import { DynamicListService } from '../service/dynamic-list.service';
   styleUrls: ['./dynamic-list.component.css']
 })
 export class DynamicListComponent implements OnInit {
-  @Input('ltype') ltype: any;
-
+  @Input('type') type: any;
+@Output('switch') switch= new EventEmitter();
   tableHeader: any;
   tableBody: any;
   constructor(private dynamicListService: DynamicListService) { }
@@ -16,8 +16,14 @@ export class DynamicListComponent implements OnInit {
     this.tableHeader = this.getTemplateForList();
     
   }
+  switchCompData()
+  {
+    console.log("test")
+    var initialize={type:this.type,componenttype:"form"}
+    this.switch.emit(initialize)
+  }
   getTemplateForList() {
-    switch (this.ltype) {
+    switch (this.type) {
       case "product":
       this.dynamicListService.getProductList().subscribe(x => this.tableBody = x.result);
         return [{ header: { Displayname: 'Product Name', name: 'ProductName' } },

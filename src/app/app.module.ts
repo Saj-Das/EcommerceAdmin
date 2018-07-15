@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DynamictabComponent } from './dynamictab/dynamictab.component';
 import { DynamicListComponent } from './dynamic-list/dynamic-list.component';
 import { DynamicListService } from './service/dynamic-list.service';
+import { DynamicComponentForTabs } from './shared/dynamicCompForTab';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { DynamicListService } from './service/dynamic-list.service';
     topnavComponent,
     LoaderComponent,
     DynamictabComponent,
-    DynamicListComponent
+    DynamicListComponent,
+    DynamicComponentForTabs
     ],
   imports: [
     BrowserModule,

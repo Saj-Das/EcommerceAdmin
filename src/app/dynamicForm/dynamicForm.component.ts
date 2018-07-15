@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DynamicFormService } from '../service/dynamicForm.service';
 import { HttpResponse } from '@angular/common/http';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { Router } from '../../../node_modules/@angular/router';
 
 })
 export class DynamicFormComponent implements OnInit {
-  @Input('ftype') ftype: any;
+  @Input('type') type: any;
   heroForm: FormGroup;
   selectedFiles: FileList;
   formControl: any;
@@ -19,6 +19,7 @@ export class DynamicFormComponent implements OnInit {
   form: FormGroup;
   formType: any;
   IsLoaderVisible: boolean;
+  @Output('switch') switch= new EventEmitter();
 
   constructor(
     public dynamicFormService: DynamicFormService,
@@ -26,6 +27,12 @@ export class DynamicFormComponent implements OnInit {
     private router: Router) {
     // this.formType = this.getType(this.router.url.toString())
   
+  }
+  switchCompData()
+  {
+    console.log("test")
+    var initialize={type:this.type,componenttype:"list"}
+    this.switch.emit(initialize)
   }
   getType(type) {
 
@@ -87,7 +94,8 @@ export class DynamicFormComponent implements OnInit {
 
   ngOnInit() {
     
-    this.formType = this.ftype;
+    this.formType = this.type;
+    
     this.formControl = this.getTemplate();
     this.form = this.toFormGroup();
   }

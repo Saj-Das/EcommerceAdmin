@@ -1,6 +1,9 @@
 <app-ui-loader [visible]="IsLoaderVisible"></app-ui-loader>
-
- <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)" >
+<div class="col-md-12 " >
+<img src="../../assets/pics/backbtn.png" class="setbackimage" (click)="switchCompData()">
+</div> 
+<div style="margin-top: 30px;">
+<form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)" >
       <div class="form-group" *ngFor="let ctl of formControl">
         <div class="form-row">
           <div class="col-md-6" *ngFor="let ctl1 of ctl.fctrl">
@@ -26,6 +29,7 @@
       <button  type=submit class="btn btn-primary">Submit</button>
         <!-- [disabled]="!form.valid" -->
     </form>
+   </div>
     <!-- <div style="text-align:center">
 
     <label>

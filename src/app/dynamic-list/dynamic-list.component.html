@@ -1,5 +1,7 @@
+<button type=submit class="btn btn-success" (click)="switchCompData()">Add new</button>
+<div style="margin-top: 30px;">
 <table class="table table-bordered">
-  <tr>
+  <tr class="commit-tease">
     <td *ngFor="let header of tableHeader">
         {{header.header.Displayname}}
     </td>
@@ -12,5 +14,6 @@
        </td>  
   </ng-container>
   </tr>
-  {{tableBody?.Tags}}
+
   </table>
+  </div>
