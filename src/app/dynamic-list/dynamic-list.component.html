@@ -1,0 +1,16 @@
+<table class="table table-bordered">
+  <tr>
+    <td *ngFor="let header of tableHeader">
+        {{header.header.Displayname}}
+    </td>
+    </tr>
+    <tr *ngFor="let body of tableBody">
+     
+      <ng-container *ngFor="let header of tableHeader">
+        <td>
+          {{body[header.header.name]}}
+       </td>  
+  </ng-container>
+  </tr>
+  {{tableBody?.Tags}}
+  </table>

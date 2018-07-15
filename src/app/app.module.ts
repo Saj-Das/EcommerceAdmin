@@ -12,6 +12,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { HttpClientModule } from '@angular/common/http';
 import { DynamictabComponent } from './dynamictab/dynamictab.component';
+import { DynamicListComponent } from './dynamic-list/dynamic-list.component';
+import { DynamicListService } from './service/dynamic-list.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +22,8 @@ import { DynamictabComponent } from './dynamictab/dynamictab.component';
     DynamicComponent,
     topnavComponent,
     LoaderComponent,
-    DynamictabComponent
+    DynamictabComponent,
+    DynamicListComponent
     ],
   imports: [
     BrowserModule,
@@ -29,13 +33,12 @@ import { DynamictabComponent } from './dynamictab/dynamictab.component';
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', pathMatch: 'full', redirectTo: 'home' },
-      { path: 'product/add', component: DynamicFormComponent },
-      { path: 'user/add', component: DynamicFormComponent },
-      {path:'home', component: DynamictabComponent}
+      {path:'home', component: DynamictabComponent},
+      {path:'list', component: DynamicListComponent}
 
     ])
   ],
-  providers: [DynamicFormService],
+  providers: [DynamicFormService,DynamicListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
