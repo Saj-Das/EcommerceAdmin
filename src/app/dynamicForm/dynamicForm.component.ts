@@ -1,26 +1,31 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { DynamicFormService } from '../service/dynamicForm.service';
 import { HttpResponse } from '@angular/common/http';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { getOrCreateTemplateRef } from '../../../node_modules/@angular/core/src/render3/di';
 import { Router } from '../../../node_modules/@angular/router';
 @Component({
-  selector: 'app-home',
+  selector: 'app-dfrm',
   templateUrl: './dynamicForm.component.html',
   styleUrls: ['./dynamicForm.component.css'],
 
 })
 export class DynamicFormComponent implements OnInit {
+  @Input('ftype') ftype: any;
   heroForm: FormGroup;
   selectedFiles: FileList;
   formControl: any;
   currentFileUpload: File;
   form: FormGroup;
   formType: any;
-  constructor(public dynamicFormService: DynamicFormService, private fb: FormBuilder, private router: Router) {
-    this.formType = this.getType(this.router.url.toString())
-    this.formControl = this.getTemplate();
-    this.form = this.toFormGroup();
+  IsLoaderVisible: boolean;
+
+  constructor(
+    public dynamicFormService: DynamicFormService,
+    private fb: FormBuilder,
+    private router: Router) {
+    // this.formType = this.getType(this.router.url.toString())
+  
   }
   getType(type) {
 
@@ -81,31 +86,32 @@ export class DynamicFormComponent implements OnInit {
   }
 
   ngOnInit() {
+    
+    this.formType = this.ftype;
+    this.formControl = this.getTemplate();
+    this.form = this.toFormGroup();
   }
   selectFile(event) {
     this.selectedFiles = event.target.files;
   }
   onSubmit(form) {
-
+    this.IsLoaderVisible = true;
     if (this.formType == "product") {
-      console.log(this.selectedFiles.item(0));
       this.currentFileUpload = this.selectedFiles.item(0);
       this.upload();
-      //this.dynamicFormService.addProduct(form.value);
+      this.dynamicFormService.addProduct(form.value);
     }
     else if (this.formType == "user")
-      this.dynamicFormService.addUser(form.value);
+      this.dynamicFormService.addUser(form.value, this);
   }
   upload() {
 
     this.dynamicFormService.uploadFile(this.currentFileUpload).subscribe(event => {
       if (event instanceof HttpResponse) {
-        console.log('File is completely uploaded!');
-        console.log(event);
+        this.IsLoaderVisible = false;
       }
     });
-
-    this.selectedFiles = undefined;
+    //this.selectedFiles = undefined;
 
   }
 

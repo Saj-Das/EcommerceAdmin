@@ -1,6 +1,6 @@
-<div class="content-wrapper">
-  <div class="container-fluid">
-    <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)" >
+<app-ui-loader [visible]="IsLoaderVisible"></app-ui-loader>
+
+ <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)" >
       <div class="form-group" *ngFor="let ctl of formControl">
         <div class="form-row">
           <div class="col-md-6" *ngFor="let ctl1 of ctl.fctrl">
@@ -40,5 +40,3 @@
   <button (click)="getData()">getdata</button>
   
     </div> -->
-  </div>
-</div>

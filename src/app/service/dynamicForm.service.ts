@@ -25,12 +25,16 @@ export class DynamicFormService {
      {alert("Error");}
     );
   }
-  addUser(data)
+  addUser(data,me)
   {
     this.http.post("https://localhost:5001/api/Form/UserAdd",data).subscribe(data => 
-    {console.log(data);},
+    {
+      me.IsLoaderVisible=false;
+    },
      error => 
-     {alert("Error");}
+     {
+     me.IsLoaderVisible=false;
+    }
     );;
   }
 getData()
