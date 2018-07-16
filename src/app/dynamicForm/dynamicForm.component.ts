@@ -19,19 +19,16 @@ export class DynamicFormComponent implements OnInit {
   form: FormGroup;
   formType: any;
   IsLoaderVisible: boolean;
-  @Output('switch') switch= new EventEmitter();
+  @Output('switch') switch = new EventEmitter();
 
   constructor(
     public dynamicFormService: DynamicFormService,
     private fb: FormBuilder,
     private router: Router) {
-    // this.formType = this.getType(this.router.url.toString())
-  
   }
-  switchCompData()
-  {
+  switchCompData() {
     console.log("test")
-    var initialize={type:this.type,componenttype:"list"}
+    var initialize = { type: this.type, componenttype: "list" }
     this.switch.emit(initialize)
   }
   getType(type) {
@@ -93,9 +90,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    
     this.formType = this.type;
-    
     this.formControl = this.getTemplate();
     this.form = this.toFormGroup();
   }
@@ -103,33 +98,22 @@ export class DynamicFormComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
   onSubmit(form) {
-     
+
     this.IsLoaderVisible = true;
     if (this.formType == "product") {
       this.currentFileUpload = this.selectedFiles.item(0);
-      
-      //  this.dynamicFormService.addProduct(form.value).subscribe(data => 
-      //   {
-         
-      //     console.log(data);},
-      //    error => 
-      //    {
-      //      alert("Error");}
-      //   );
-        this.upload(form.value);
+      this.upload(form.value);
     }
     else if (this.formType == "user")
       this.dynamicFormService.addUser(form.value, this);
   }
   upload(formdata) {
-
-    this.dynamicFormService.uploadFile(this.currentFileUpload,formdata).subscribe(event => {
+    this.dynamicFormService.uploadFile(this.currentFileUpload, formdata).subscribe(event => {
       if (event instanceof HttpResponse) {
         this.IsLoaderVisible = false;
       }
     });
     //this.selectedFiles = undefined;
-
   }
 
 }
