@@ -9,9 +9,12 @@
     <tr *ngFor="let body of tableBody">
      
       <ng-container *ngFor="let header of tableHeader">
-        <td>
+        <td *ngIf="header.header.name!='image'">
           {{body[header.header.name]}}
-       </td>  
+       </td> 
+       <td *ngIf="header.header.name=='image'">
+         <img src="https://localhost:5001/{{body[header.header.name]}}" style="width:100%;height: 200px;">
+       </td> 
   </ng-container>
   </tr>
 

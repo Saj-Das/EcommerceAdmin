@@ -107,15 +107,23 @@ export class DynamicFormComponent implements OnInit {
     this.IsLoaderVisible = true;
     if (this.formType == "product") {
       this.currentFileUpload = this.selectedFiles.item(0);
-      this.upload();
-      this.dynamicFormService.addProduct(form.value);
+      
+      //  this.dynamicFormService.addProduct(form.value).subscribe(data => 
+      //   {
+         
+      //     console.log(data);},
+      //    error => 
+      //    {
+      //      alert("Error");}
+      //   );
+        this.upload(form.value);
     }
     else if (this.formType == "user")
       this.dynamicFormService.addUser(form.value, this);
   }
-  upload() {
+  upload(formdata) {
 
-    this.dynamicFormService.uploadFile(this.currentFileUpload).subscribe(event => {
+    this.dynamicFormService.uploadFile(this.currentFileUpload,formdata).subscribe(event => {
       if (event instanceof HttpResponse) {
         this.IsLoaderVisible = false;
       }
