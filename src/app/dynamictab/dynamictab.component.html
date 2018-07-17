@@ -1,20 +1,23 @@
 <div class="container-wrapper">
-  <tabset>
-    <tab heading="Product" id="tab1">
-      <div class="tabset-wrapper">
 
-        <div class="tabset-margin">
-          <app-dynamic-for-tab [componentData]="componentDataProduct" (switch)="switchCompData($event)"></app-dynamic-for-tab>
-        </div>
-      </div>
-    </tab>
-    <tab heading="User">
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
+        aria-selected="true"><i class="fa fa-shopping-bag"></i> Product</a>
+      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+        aria-selected="false"><i class="fa fa-user-o"></i> User</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
       <div class="tabset-wrapper">
-       <div class="tabset-margin">
-          <app-dynamic-for-tab [componentData]="componentDataUser" (switch)="switchCompData($event)"></app-dynamic-for-tab>
-        </div>
+        <app-dynamic-for-tab [componentData]="componentDataProduct" (switch)="switchCompData($event)"></app-dynamic-for-tab>
       </div>
-    </tab>
-
-  </tabset>
+    </div>
+    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="tabset-wrapper">
+        <app-dynamic-for-tab [componentData]="componentDataUser" (switch)="switchCompData($event)"></app-dynamic-for-tab>
+      </div>
+    </div>
+  </div>
 </div>

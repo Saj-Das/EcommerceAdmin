@@ -15,6 +15,7 @@ import { DynamictabComponent } from './dynamictab/dynamictab.component';
 import { DynamicListComponent } from './dynamic-list/dynamic-list.component';
 import { DynamicListService } from './service/dynamic-list.service';
 import { DynamicComponentForTabs } from './shared/dynamicCompForTab';
+import { footerComponent } from './shared/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { DynamicComponentForTabs } from './shared/dynamicCompForTab';
     LoaderComponent,
     DynamictabComponent,
     DynamicListComponent,
-    DynamicComponentForTabs
+    DynamicComponentForTabs,
+    footerComponent
     ],
   imports: [
     BrowserModule,

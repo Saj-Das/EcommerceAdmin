@@ -26,22 +26,24 @@ export class DynamicListComponent implements OnInit {
     switch (this.type) {
       case "product":
       this.dynamicListService.getProductList().subscribe(x => this.tableBody = x.result);
-        return [{ header: { Displayname: 'Product Name', name: 'ProductName' } },
+        return [{ header: { Displayname: 'Snapshot', name: 'image' } },
+        { header: { Displayname: 'Product Name', name: 'ProductName' } },
         { header: { Displayname: 'Selling Price', name: 'SellingPrice' } },
         { header: { Displayname: 'Cost Price', name: 'CostPrice' } },
         { header: { Displayname: 'Brand', name: 'Brand' } },
         { header: { Displayname: 'Quantity', name: 'Quantity' } },
         { header: { Displayname: 'Category', name: 'Category' } },
-        { header: { Displayname: 'Tags', name: 'Tags' } },
-        { header: { Displayname: 'Snapshot', name: 'image' } }];
+        { header: { Displayname: 'Tags', name: 'Tags' } }
+        ];
         case "user":
         this.dynamicListService.getUserList().subscribe(x => this.tableBody = x.result);
-        return [{ header: { Displayname: 'Contact', name: 'Contact' } },
+        return [ { header: { Displayname: 'Name', name: 'Name' } },
+        { header: { Displayname: 'Password', name: 'Password' }},
+        { header: { Displayname: 'Contact', name: 'Contact' } },
         { header: { Displayname: 'Country', name: 'Country' } },
         { header: { Displayname: 'Email', name: 'Email' } },
-        { header: { Displayname: 'Brand', name: 'Brand' } },
-        { header: { Displayname: 'Name', name: 'Name' } },
-        { header: { Displayname: 'Password', name: 'Password' } }];
+        { header: { Displayname: 'Brand', name: 'Brand' } }
+        ];
    
     }
   }

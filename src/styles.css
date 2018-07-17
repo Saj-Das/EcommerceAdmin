@@ -26,4 +26,14 @@ body {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
-  
+  .nav-tabs .nav-link {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    color: #495057;
+}
+.nav-tabs .nav-link.active {
+
+    border-top-color: #e36209;
+    border-top-width: 2px;
+
+}
