@@ -42,8 +42,9 @@ export  class DynamicComponentForTabs {
     // We create the component using the factory and the injector
     let component = factory.create(injector);
     // component.type=data.inputs["type"];
-    component.instance.type=data.inputs["type"];
-    component.instance.switch.subscribe(x=> this.switch.emit(x));
+    let bar = <any>component.instance;
+    bar.type=data.inputs["type"];
+    bar.switch.subscribe(x=> this.switch.emit(x));
     // console.log(component);
     // We insert the component into the dom container
     this.dynamicComponentContainer.insert(component.hostView);

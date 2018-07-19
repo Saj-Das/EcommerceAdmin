@@ -4,8 +4,13 @@
     <div class="nav nav-tabs" id="nav-tab" role="tablist">
       <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home"
         aria-selected="true"><i class="fa fa-shopping-bag"></i> Product</a>
-      <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
+      
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile"
         aria-selected="false"><i class="fa fa-user-o"></i> User</a>
+        
+        <a class="nav-item nav-link" id="nav-offer-tab" data-toggle="tab" href="#nav-offer" role="tab" 
+        aria-controls="nav-offer" aria-selected="false"><i class="fa fa-tag"></i>Apply Offer </a>
+
     </div>
   </nav>
   <div class="tab-content" id="nav-tabContent">
@@ -19,5 +24,11 @@
         <app-dynamic-for-tab [componentData]="componentDataUser" (switch)="switchCompData($event)"></app-dynamic-for-tab>
       </div>
     </div>
+    <div class="tab-pane fade" id="nav-offer" role="tabpanel" aria-labelledby="nav-offer-tab">
+      <div class="tabset-wrapper">
+        <app-dynamic-for-tab [componentData]="componentDataOffer" (switch)="switchCompData($event)"></app-dynamic-for-tab>
+      </div>
+    </div>
+
   </div>
 </div>

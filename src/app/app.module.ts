@@ -16,6 +16,7 @@ import { DynamicListComponent } from './dynamic-list/dynamic-list.component';
 import { DynamicListService } from './service/dynamic-list.service';
 import { DynamicComponentForTabs } from './shared/dynamicCompForTab';
 import { footerComponent } from './shared/footer/footer.component';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { footerComponent } from './shared/footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    MultiselectDropdownModule,
     RouterModule.forRoot([
       { path: '', pathMatch: 'full', redirectTo: 'home' },
       {path:'home', component: DynamictabComponent},

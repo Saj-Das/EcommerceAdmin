@@ -25,7 +25,11 @@ export class DynamicListComponent implements OnInit {
   getTemplateForList() {
     switch (this.type) {
       case "product":
-      this.dynamicListService.getProductList().subscribe(x => this.tableBody = x.result);
+      this.dynamicListService.getProductList().subscribe(data => 
+        { let bar=<any>data
+          this.tableBody=bar.result
+        }
+        );
         return [{ header: { Displayname: 'Snapshot', name: 'image' } },
         { header: { Displayname: 'Product Name', name: 'ProductName' } },
         { header: { Displayname: 'Selling Price', name: 'SellingPrice' } },
@@ -36,7 +40,12 @@ export class DynamicListComponent implements OnInit {
         { header: { Displayname: 'Tags', name: 'Tags' } }
         ];
         case "user":
-        this.dynamicListService.getUserList().subscribe(x => this.tableBody = x.result);
+        this.dynamicListService.getUserList().subscribe(data => 
+          { let bar=<any>data
+            this.tableBody=bar.result
+          }
+          );
+          
         return [ { header: { Displayname: 'Name', name: 'Name' } },
         { header: { Displayname: 'Password', name: 'Password' }},
         { header: { Displayname: 'Contact', name: 'Contact' } },

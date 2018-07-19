@@ -3,7 +3,6 @@
     <i class="fa fa-arrow-circle-left setbackimage"  (click)="switchCompData()" aria-hidden="true"></i>
 </div>
 
-
 <form [formGroup]="form" novalidate (ngSubmit)="onSubmit(form)" >
       <div class="form-group" *ngFor="let ctl of formControl">
         <div class="form-row">
@@ -24,6 +23,9 @@
             </select>
             <textarea *ngIf="ctl1.type=='textarea'" [formControlName]="ctl1.name" class="form-control">
                   </textarea>
+            <ss-multiselect-dropdown *ngIf="ctl1.type=='multidropdown'"  [options]="myOptions" 
+            [formControlName]="ctl1.name">
+          </ss-multiselect-dropdown>
           </div>
         </div>
       </div>

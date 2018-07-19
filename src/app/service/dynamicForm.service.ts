@@ -4,6 +4,8 @@ import {HttpClient, HttpRequest, HttpEvent} from '@angular/common/http';
 import {Http, Response} from '@angular/http';
 @Injectable()
 export class DynamicFormService {
+ 
+  
 
   constructor(private http: HttpClient) { }
    url='https://localhost:5001/api/';
@@ -25,6 +27,9 @@ export class DynamicFormService {
   {
     return this.http.post(this.url+"Form/ProductAdd",data);
   }
+  populatedropdown(): any {
+    return this.http.get(this.url+"Form/Populatedropdown");
+  }
   addUser(data,me)
   {
     this.http.post(this.url+"Form/UserAdd",data).subscribe(data => 
@@ -37,5 +42,17 @@ export class DynamicFormService {
     }
     );
   }
+  addOffer(data: any, me: any): any {
+    this.http.post(this.url+"Form/AddOffer",data).subscribe(data => 
+      {
+        me.IsLoaderVisible=false;
+      },
+       error => 
+       {
+       me.IsLoaderVisible=false;
+      }
+      );
+  }
+ 
 
 }

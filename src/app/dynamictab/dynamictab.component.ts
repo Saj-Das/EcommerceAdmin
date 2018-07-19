@@ -14,8 +14,14 @@ export class DynamictabComponent implements OnInit {
   };
   componentDataUser = {
     component: "list",
-    inputs: {
+    inputs: { 
       type: "user"
+    }
+  };
+  componentDataOffer = {
+    component: "form",
+    inputs: {
+      type: "offer"
     }
   };
   constructor() { }

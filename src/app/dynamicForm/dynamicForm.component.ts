@@ -4,6 +4,8 @@ import { HttpResponse } from '@angular/common/http';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { getOrCreateTemplateRef } from '../../../node_modules/@angular/core/src/render3/di';
 import { Router } from '../../../node_modules/@angular/router';
+import { IMultiSelectOption } from 'angular-2-dropdown-multiselect';
+
 @Component({
   selector: 'app-dfrm',
   templateUrl: './dynamicForm.component.html',
@@ -20,25 +22,20 @@ export class DynamicFormComponent implements OnInit {
   formType: any;
   IsLoaderVisible: boolean;
   @Output('switch') switch = new EventEmitter();
-
+  optionsModel: number[];
+  myOptions: IMultiSelectOption[] = [
+    { id: 1, name: 'Option 1' },
+    { id: 2, name: 'Option 2' },
+];
   constructor(
     public dynamicFormService: DynamicFormService,
     private fb: FormBuilder,
     private router: Router) {
   }
+ 
   switchCompData() {
-    console.log("test")
     var initialize = { type: this.type, componenttype: "list" }
     this.switch.emit(initialize)
-  }
-  getType(type) {
-
-    if (type.indexOf("product") == 1) {
-      return "product"
-    }
-    else if (type.indexOf("user") == 1) {
-      return "user"
-    }
   }
   getTemplate() {
     switch (this.formType) {
@@ -77,16 +74,32 @@ export class DynamicFormComponent implements OnInit {
           { fctrl: [{ "Dname": "Email", "name": "Email", "type": "email" }] }
 
         ];
+        case "offer":
+        this.dynamicFormService.populatedropdown().subscribe(x =>{
+            let bar=<any>x
+           this.myOptions=x.result;  
+        } );
+       return [
+          {
+            fctrl: [{ "Dname": "Offer Name", "name": "Name", "type": "input" },
+            { "Dname": "Select products", "name": "selectedproduct", "type": "multidropdown" }]
+          }];
     }
   }
   toFormGroup() {
     let group: any = {};
     this.formControl.forEach(x => {
       x.fctrl.forEach(y => {
+        if(y.name=="selectedproduct")
+        {
+          group[y.name] = new FormControl();
+        }
+        else
         group[y.name] = new FormControl('', Validators.required);
       });
     });
-    return new FormGroup(group);
+   
+     return new FormGroup(group);
   }
 
   ngOnInit() {
@@ -106,6 +119,11 @@ export class DynamicFormComponent implements OnInit {
     }
     else if (this.formType == "user")
       this.dynamicFormService.addUser(form.value, this);
+      else if (this.formType == "offer")
+      {
+      
+        this.dynamicFormService.addOffer(form.value, this)
+      }
   }
   upload(formdata) {
     this.dynamicFormService.uploadFile(this.currentFileUpload, formdata).subscribe(event => {
