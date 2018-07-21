@@ -26,8 +26,8 @@ export class DynamicListComponent implements OnInit {
     switch (this.type) {
       case "product":
       this.dynamicListService.getProductList().subscribe(data => 
-        { let bar=<any>data
-          this.tableBody=bar.result
+        {console.log(data)
+          this.tableBody=data
         }
         );
         return [{ header: { Displayname: 'Snapshot', name: 'image' } },
@@ -41,8 +41,8 @@ export class DynamicListComponent implements OnInit {
         ];
         case "user":
         this.dynamicListService.getUserList().subscribe(data => 
-          { let bar=<any>data
-            this.tableBody=bar.result
+          { 
+            this.tableBody=data
           }
           );
           

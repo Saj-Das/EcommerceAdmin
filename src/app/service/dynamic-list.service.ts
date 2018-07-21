@@ -5,15 +5,16 @@ import {HttpClient, HttpRequest, HttpEvent} from '@angular/common/http';
   providedIn: 'root'
 })
 export class DynamicListService {
-  getUserList(){
-    return this.http.get(this.url+'List/getUser');
-  }
-
+ 
   constructor(private http: HttpClient) { }
-  url='https://localhost:5001/api/';
+  url='http://localhost:3000/api/';
 
   getProductList()
   {
     return this.http.get(this.url+'List/getProduct');
   }
+  getUserList(){
+    return this.http.get(this.url+'List/getUser');
+  }
+
 }
