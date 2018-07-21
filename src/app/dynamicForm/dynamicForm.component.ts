@@ -76,8 +76,7 @@ export class DynamicFormComponent implements OnInit {
         ];
         case "offer":
         this.dynamicFormService.populatedropdown().subscribe(x =>{
-            let bar=<any>x
-           this.myOptions=x.result;  
+        this.myOptions=x;  
         } );
        return [
           {

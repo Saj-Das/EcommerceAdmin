@@ -8,7 +8,7 @@ export class DynamicFormService {
   
 
   constructor(private http: HttpClient) { }
-   url='https://localhost:5001/api/';
+   url='http://localhost:3000/api/';
 
   uploadFile(file: File,formdata1): Observable<HttpEvent<{}>> {
     formdata1=JSON.stringify(formdata1)
